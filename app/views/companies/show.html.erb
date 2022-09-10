@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<div class="company_header">
+  <h1><%= @company.name %></h1>
+  <p><span><%= "#{@company.start_date.year} - #{@company.country}" %></span></p>
+</div>
+
+<div class="company_details">
+  <p><%= @company.description %></p>
+</div>
+
+<div>
+  <%= link_to "Back", companies_path %>
+</div>
