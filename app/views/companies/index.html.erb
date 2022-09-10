@@ -2,6 +2,8 @@
 
 <h1>Companies</h1>
 
+<%= link_to "New Company", new_company_path %>
+
 <div id="companies">
   <% @companies.each do |company| %>
     <%= render "company_card", company: company %>
@@ -11,4 +13,3 @@
   <% end %>
 </div>
 
-<%= link_to "New company", new_company_path %>
