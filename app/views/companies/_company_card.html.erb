@@ -1,0 +1,12 @@
+<div class=company_card>
+  <div class="company_card-content">
+    <h2><%= company.name%></h2>
+    <p><span><%= "#{company.start_date.year} - #{company.country}"%></span></p>
+    <p><%= company.description %></p>
+  </div>
+  <div class="comapny_card-footer">
+    <p><span><%= "#" %> Games</span></p>
+    <%= link_to "Edit", "#"%>
+    <%= link_to "Delete", "#"%>
+  </div>
+</div>
