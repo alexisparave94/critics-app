@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
-  root "companies#index"
+  root "games#index"
+  resources :games
   resources :companies
 end
