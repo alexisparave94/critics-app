@@ -15,6 +15,7 @@ class Game < ApplicationRecord
                      allow_nil: true
   validates :parent, inclusion: { in: proc { Game.main_game } },
                      unless: proc { main_game? || category.nil? }
+  validates :parent, absence: true, if: proc { main_game? }
 
   enum category: { main_game: 0, expansion: 1 }
 end

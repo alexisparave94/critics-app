@@ -27,18 +27,22 @@
   </div>
 
   <div>
-    <%= form.label :category, style: "display: block" %>
-    <%= form.number_field :category %>
-  </div>
-
-  <div>
     <%= form.label :rating, style: "display: block" %>
     <%= form.text_field :rating %>
   </div>
 
   <div>
-    <%= form.label :parent_id, style: "display: block" %>
-    <%= form.text_field :parent_id %>
+    <%= form.label :category, style: "display: block" %>
+    <%= form.select :category, GamesHelper.format_categories(Game.categories.keys), 
+                               include_blank: "--Select Category" %>
+  </div>
+
+  <div>
+    <%= form.label :parent_id, "Parent Game" , style: "display: block" %>
+    <%= form.collection_select :parent_id, Game.main_game, 
+                                           :id, 
+                                           :name, 
+                                           include_blank: "-- No parent" %>
   </div>
 
   <div>
