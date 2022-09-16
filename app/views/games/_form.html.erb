@@ -1,0 +1,51 @@
+<%= form_with(model: game) do |form| %>
+  <% if game.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(game.errors.count, "error") %> prohibited this game from being saved:</h2>
+
+      <ul>
+        <% game.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :summary, style: "display: block" %>
+    <%= form.text_area :summary %>
+  </div>
+
+  <div>
+    <%= form.label :release_date, style: "display: block" %>
+    <%= form.date_field :release_date %>
+  </div>
+
+  <div>
+    <%= form.label :rating, style: "display: block" %>
+    <%= form.text_field :rating %>
+  </div>
+
+  <div>
+    <%= form.label :category, style: "display: block" %>
+    <%= form.select :category, GamesHelper.format_categories(Game.categories.keys), 
+                               include_blank: "--Select Category" %>
+  </div>
+
+  <div>
+    <%= form.label :parent_id, "Parent Game" , style: "display: block" %>
+    <%= form.collection_select :parent_id, Game.main_game, 
+                                           :id, 
+                                           :name, 
+                                           include_blank: "-- No parent" %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

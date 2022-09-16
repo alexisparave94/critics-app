@@ -1,0 +1,13 @@
+<div class=game_card>
+  <div class="game_card-content">
+    <h2><%= game.name%></h2>
+    <p><span><%= game.release_date ? game.release_date.year : "-" %></span></p>
+    <p><span><%= game.rating ? game.rating : "0.0" %></span></p>
+    <p><%= game.summary %></p>
+  </div>
+  <div class="game_card-footer">
+    <p><span><%= game.critics_count %> Critics</span></p>
+    <%= link_to "Edit", edit_game_path(game) %>
+    <%= button_to "Delete", game, method: :delete%>
+  </div>
+</div>

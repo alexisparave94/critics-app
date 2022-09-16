@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_10_230544) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_15_194934) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -26,4 +26,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_10_230544) do
     t.index ["name"], name: "index_companies_on_name", unique: true
   end
 
+  create_table "games", force: :cascade do |t|
+    t.string "name"
+    t.text "summary"
+    t.date "release_date"
+    t.integer "category"
+    t.decimal "rating"
+    t.integer "critics_count", default: 0
+    t.bigint "parent_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_games_on_name", unique: true
+    t.index ["parent_id"], name: "index_games_on_parent_id"
+  end
+
+  add_foreign_key "games", "games", column: "parent_id"
 end
