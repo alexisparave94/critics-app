@@ -60,6 +60,12 @@
 
     <h2>Add relations</h2>
     <div>
+      <%= form_with url: add_genre_game_path(game) do |f|%>
+        <%= f.collection_select :genre_id, (Genre.all - game.genres), :id, :name, include_blank: "Select genre"  %>
+        <%= f.submit "Add genre" %>
+      <% end %>
+    </div>
+    <div>
       <%= form_with model: [game, involved_company_dev] do |f| %>
         <% if involved_company_dev.errors.any? %>
           <div style="color: red">

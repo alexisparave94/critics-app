@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  before_action :set_game, only: %i[ show edit update destroy ]
+  before_action :set_game, only: %i[show edit update destroy add_genre]
 
   # GET /games
   def index
@@ -45,6 +45,12 @@ class GamesController < ApplicationController
   def destroy
     @game.destroy
     redirect_to games_url, notice: "Game was successfully destroyed."
+  end
+
+  def add_genre
+    @genre = Genre.find(params[:genre_id])
+    @game.genres << @genre
+    redirect_to @game
   end
 
   private
