@@ -24,7 +24,14 @@
     <div>
       <ul>
         <% GamesHelper.filter_involved_companies(game.involved_companies, "developer").each do |invol_dev| %>
-          <li><%= invol_dev.company.name %></li>
+          <li>
+            <%= form_with model: [game, invol_dev], method: :delete do |f| %>
+              <%= f.text_field :company_id, hidden: true %>
+              <%= f.text_field :developer, value: true, hidden: true %>
+              <%= f.submit "Delete" %> 
+            <% end %>
+            <%= invol_dev.company.name %>
+          </li>
         <% end %>
       </ul>
     </div>
@@ -32,7 +39,14 @@
     <div>
       <ul>
         <% GamesHelper.filter_involved_companies(game.involved_companies, "publisher").each do |invol_pub| %>
-          <li><%= invol_pub.company.name %></li>
+          <li>
+            <%= form_with model: [game, invol_pub], method: :delete do |f| %>
+              <%= f.text_field :company_id, hidden: true %>
+              <%= f.text_field :publisher, value: true, hidden: true %>
+              <%= f.submit "Delete" %> 
+            <% end %>
+            <%= invol_pub.company.name %>
+          </li>
         <% end %>
       </ul>
     </div>

@@ -1,7 +1,8 @@
 class InvolvedCompaniesController < ApplicationController
+  before_action :set_involved_company
+
   # POST games/:game_id/involved_companies
   def create
-    @involved_company = InvolvedCompany.where(game_id: params[:game_id]).where(company_id: involved_company_params[:company_id]).first
     @game = Game.find(params[:game_id])
     if @involved_company
       if involved_company_params[:developer]
@@ -46,9 +47,32 @@ class InvolvedCompaniesController < ApplicationController
     end
   end
 
+  def destroy
+    if involved_company_params[:developer]
+      if @involved_company.publisher
+        @involved_company.developer = false
+        @involved_company.save
+      else
+        @involved_company.destroy
+      end
+    else
+      if @involved_company.developer
+        @involved_company.publisher = false
+        @involved_company.save
+      else
+        @involved_company.destroy
+      end
+    end
+    redirect_to @involved_company.game, notice: "Company deleted"
+  end
+
   private
 
   def involved_company_params
     params.require(:involved_company).permit(:company_id, :developer, :publisher)
+  end
+
+  def set_involved_company
+    @involved_company = InvolvedCompany.where(game_id: params[:game_id]).where(company_id: involved_company_params[:company_id]).first
   end
 end
