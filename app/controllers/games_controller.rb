@@ -8,6 +8,8 @@ class GamesController < ApplicationController
 
   # GET /games/1
   def show
+    @involved_company_dev = InvolvedCompany.new
+    @involved_company_pub = InvolvedCompany.new
   end
 
   # GET /games/new

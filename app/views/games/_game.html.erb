@@ -21,9 +21,77 @@
     <h4>Genres</h4>
     <h4>Platforms</h4>
     <h4>Developers</h4>
+    <div>
+      <ul>
+        <% GamesHelper.filter_involved_companies(game.involved_companies, "developer").each do |invol_dev| %>
+          <li>
+            <%= form_with model: [game, invol_dev], method: :delete do |f| %>
+              <%= f.text_field :company_id, hidden: true %>
+              <%= f.text_field :developer, value: true, hidden: true %>
+              <%= f.submit "Delete" %> 
+            <% end %>
+            <%= invol_dev.company.name %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
     <h4>Publishers</h4>
+    <div>
+      <ul>
+        <% GamesHelper.filter_involved_companies(game.involved_companies, "publisher").each do |invol_pub| %>
+          <li>
+            <%= form_with model: [game, invol_pub], method: :delete do |f| %>
+              <%= f.text_field :company_id, hidden: true %>
+              <%= f.text_field :publisher, value: true, hidden: true %>
+              <%= f.submit "Delete" %> 
+            <% end %>
+            <%= invol_pub.company.name %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
 
     <h2>Add relations</h2>
+    <div>
+      <%= form_with model: [game, involved_company_dev] do |f| %>
+        <% if involved_company_dev.errors.any? %>
+          <div style="color: red">
+            <h2><%= pluralize(involved_company_dev.errors.count, "error") %> prohibited this involved company from being saved:</h2>
+            <ul>
+              <% involved_company_dev.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <%= f.text_field :developer, value: true, hidden: true %>
+        <%= f.collection_select :company_id, Company.all, 
+                                            :id, 
+                                            :name, 
+                                            include_blank: "Select Company" %>
+        <%= f.submit "Add developer" %>
+      <% end %>
+    </div>
+    <div>
+      <%= form_with model: [game, involved_company_pub] do |f| %>
+        <% if involved_company_pub.errors.any? %>
+          <div style="color: red">
+            <h2><%= pluralize(involved_company_pub.errors.count, "error") %> prohibited this involved company from being saved:</h2>
+            <ul>
+              <% involved_company_pub.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <%= f.text_field :publisher, value: true, hidden: true %>
+        <%= f.collection_select :company_id, Company.all, 
+                                            :id, 
+                                            :name, 
+                                            include_blank: "Select Company" %>
+        <%= f.submit "Add publisher" %>
+      <% end %>
+    </div>
   </div>
 
   <div class="critics_section">

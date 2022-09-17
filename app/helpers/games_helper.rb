@@ -4,4 +4,8 @@ module GamesHelper
       [cat.split("_").map(&:capitalize).join(" "), cat]
     end
   end
+
+  def self.filter_involved_companies(involved_companies, option)
+    option == "developer" ? involved_companies.select(&:developer?) : involved_companies.select(&:publisher?)
+  end
 end

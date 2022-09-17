@@ -7,6 +7,9 @@ class Game < ApplicationRecord
                         dependent: :nullify,
                         inverse_of: "parent"
 
+  has_many :involved_companies, dependent: :destroy
+  has_many :companies, through: :involved_companies
+
   # Validations
   validates :name, presence: true
   validates :summary, length: { in: 10..100 }, allow_nil: true
