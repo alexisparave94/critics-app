@@ -1,6 +1,7 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @game %>
+<%= render @game, involved_company_dev: @involved_company_dev, 
+                  involved_company_pub: @involved_company_pub %>
 
 <div>
   <%= link_to "Back", games_path %>
