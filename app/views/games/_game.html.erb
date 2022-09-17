@@ -21,7 +21,21 @@
     <h4>Genres</h4>
     <h4>Platforms</h4>
     <h4>Developers</h4>
+    <div>
+      <ul>
+        <% GamesHelper.filter_involved_companies(game.involved_companies, "developer").each do |invol_dev| %>
+          <li><%= invol_dev.company.name %></li>
+        <% end %>
+      </ul>
+    </div>
     <h4>Publishers</h4>
+    <div>
+      <ul>
+        <% GamesHelper.filter_involved_companies(game.involved_companies, "publisher").each do |invol_pub| %>
+          <li><%= invol_pub.company.name %></li>
+        <% end %>
+      </ul>
+    </div>
 
     <h2>Add relations</h2>
   </div>

@@ -8,7 +8,7 @@ class Game < ApplicationRecord
                         inverse_of: "parent"
 
   has_many :involved_companies, dependent: :destroy
-  has_many :games, through: :involved_companies
+  has_many :companies, through: :involved_companies
 
   # Validations
   validates :name, presence: true
