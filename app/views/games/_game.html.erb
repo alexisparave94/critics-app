@@ -19,6 +19,19 @@
     </p>
 
     <h4>Genres</h4>
+    <div>
+      <ul>
+        <% game.genres.each do |genre| %>
+          <li>
+            <%= genre.name %>
+            <%= form_with url: remove_genre_game_path(game), method: :delete do |f|%>
+              <%= f.hidden_field :genre_id, value: genre.id %>
+              <%= f.submit "Delete" %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
     <h4>Platforms</h4>
     <h4>Developers</h4>
     <div>
@@ -52,6 +65,12 @@
     </div>
 
     <h2>Add relations</h2>
+    <div>
+      <%= form_with url: add_genre_game_path(game) do |f|%>
+        <%= f.collection_select :genre_id, (Genre.all - game.genres), :id, :name, include_blank: "Select genre"  %>
+        <%= f.submit "Add genre" %>
+      <% end %>
+    </div>
     <div>
       <%= form_with model: [game, involved_company_dev] do |f| %>
         <% if involved_company_dev.errors.any? %>
