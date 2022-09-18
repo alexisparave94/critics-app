@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :games do
     resources :involved_companies, only: %i[create destroy]
     post "add_genre", on: :member
+    delete "remove_genre", on: :member
   end
   resources :companies
 end

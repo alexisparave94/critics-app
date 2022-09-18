@@ -22,7 +22,13 @@
     <div>
       <ul>
         <% game.genres.each do |genre| %>
-          <li><%= genre.name %></li>
+          <li>
+            <%= genre.name %>
+            <%= form_with url: remove_genre_game_path(game), method: :delete do |f|%>
+              <%= f.hidden_field :genre_id, value: genre.id %>
+              <%= f.submit "Delete" %>
+            <% end %>
+          </li>
         <% end %>
       </ul>
     </div>
