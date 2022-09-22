@@ -1,0 +1,12 @@
+<div class="critic_card">
+  <h4>
+    <%= critic.title %>
+  </h4>
+  <p><span>by <%= critic.user.username %></span></p>
+  <p><%= critic.body %></p>
+  <div clas="critic_card-footer">
+    <p><span>Send <%= critic.created_at %></span></p>
+    <%= button_to "Approve" %>
+    <%= button_to "Delete" %>
+  </div>
+</div>
