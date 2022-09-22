@@ -37,6 +37,11 @@
         <% game.platforms.each do |platform| %>
           <li>
             <%= platform.name %>
+            <%= form_with url: remove_platform_game_path(game), method: :delete do |f|%>
+              <%= f.hidden_field :platform_id, value: platform.id %>
+              <%= f.submit "Delete" %>
+            <% end %>
+          </li>
         <% end %>
       </ul>
     <h4>Developers</h4>

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     post "add_genre", on: :member
     delete "remove_genre", on: :member
     post "add_platform", on: :member
+    delete "remove_platform", on: :member
   end
   resources :companies
 end
