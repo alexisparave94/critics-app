@@ -33,6 +33,12 @@
       </ul>
     </div>
     <h4>Platforms</h4>
+      <ul>
+        <% game.platforms.each do |platform| %>
+          <li>
+            <%= platform.name %>
+        <% end %>
+      </ul>
     <h4>Developers</h4>
     <div>
       <ul>
