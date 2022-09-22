@@ -78,6 +78,15 @@
       <% end %>
     </div>
     <div>
+      <%= form_with url: add_platform_game_path(game) do |f| %>
+        <%= f.collection_select :platform_id, (Platform.all - game.platforms),
+                                            :id,
+                                            :name,
+                                            include_blank: "Select platform" %>
+        <%= f.submit "Add platform" %>
+      <% end %>
+    </div>
+    <div>
       <%= form_with model: [game, involved_company_dev] do |f| %>
         <% if involved_company_dev.errors.any? %>
           <div style="color: red">

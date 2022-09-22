@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  before_action :set_game, only: %i[show edit update destroy add_genre remove_genre]
+  before_action :set_game, only: %i[show edit update destroy add_genre remove_genre add_platform]
 
   # GET /games
   def index
@@ -56,6 +56,12 @@ class GamesController < ApplicationController
   def remove_genre
     @genre = Genre.find(params[:genre_id])
     @game.genres.delete(@genre)
+    redirect_to @game
+  end
+
+  def add_platform
+    @platform = Platform.find(params[:platform_id])
+    @game.platforms << @platform
     redirect_to @game
   end
 
