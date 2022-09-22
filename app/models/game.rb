@@ -11,6 +11,7 @@ class Game < ApplicationRecord
   has_many :companies, through: :involved_companies
 
   has_and_belongs_to_many :genres
+  has_and_belongs_to_many :platforms
 
   # Validations
   validates :name, presence: true
