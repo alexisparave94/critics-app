@@ -8,8 +8,10 @@ Rails.application.routes.draw do
 
     post "add_platform", on: :member
     delete "remove_platform", on: :member
-    
+
     resources :critics, only: %i[create]
   end
-  resources :companies
+  resources :companies do
+    resources :critics, only: %i[create]
+  end
 end

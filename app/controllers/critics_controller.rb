@@ -1,15 +1,26 @@
 class CriticsController < ApplicationController
   # POST game/:game_id/critic
+  # POST company/:company_id/critic
   def create
-    @game = Game.find(params[:game_id])
     @involved_company_dev = InvolvedCompany.new
     @involved_company_pub = InvolvedCompany.new
-    @critic = Critic.new(critic_params)
-    @critic.criticable = @game
+
+    if params[:game_id]
+      @criticable = Game.find(params[:game_id])
+      @game = Game.find(params[:game_id])
+    elsif params[:company_id]
+      @criticable = Company.find(params[:company_id])
+      @company = Company.find(params[:company_id])
+    end
+
+    @critic = @criticable.critics.new(critic_params)
+
     if @critic.save
-      redirect_to @game, notice: "Critic was successfully created."
-    else
+      redirect_to @criticable, notice: "Critic was successfully created."
+    elsif params[:game_id]
       render "games/show", status: :unprocessable_entity
+    elsif params[:company_id]
+      render "companies/show", status: :unprocessable_entity
     end
   end
 

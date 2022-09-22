@@ -16,11 +16,11 @@
 
 <div class="company_critics">
   <h3>Critics (<%= @company.critics_count%>)</h3>
+  <%= render "critics/form", criticable: @company ,critic: @critic %>
   <% @company.critics.each do |critic| %>
     <%= render "critics/critic", critic: critic %>
   <% end %>
 </div>
-
 
 <div>
   <%= link_to "Back", companies_path %>

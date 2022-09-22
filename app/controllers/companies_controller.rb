@@ -8,6 +8,7 @@ class CompaniesController < ApplicationController
 
   # GET /companies/1
   def show
+    @critic = Critic.new
   end
 
   # GET /companies/new
