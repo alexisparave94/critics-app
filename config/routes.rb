@@ -14,4 +14,6 @@ Rails.application.routes.draw do
   resources :companies do
     resources :critics, only: %i[create]
   end
+
+  resources :critics, only: :destroy
 end

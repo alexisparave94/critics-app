@@ -7,6 +7,6 @@
   <div clas="critic_card-footer">
     <p><span>Send <%= critic.created_at %></span></p>
     <%= button_to "Approve" %>
-    <%= button_to "Delete" %>
+    <%= button_to "Delete", critic_path(critic), method: :delete %>
   </div>
 </div>

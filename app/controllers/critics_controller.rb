@@ -24,6 +24,11 @@ class CriticsController < ApplicationController
     end
   end
 
+  def destroy
+    @critic = Critic.find(params[:id])
+    redirect_to @critic.criticable,  notice: "Critic was successfully destroyed."
+  end
+
   private
 
   def critic_params
