@@ -6,7 +6,20 @@
 </div>
 
 <div class="company_details">
+  <h3>Company Details</h3>
   <p><%= @company.description %></p>
+  <h4>Games (<%= @company.games_count%>)</h4>
+  <% @company.games.each do |game| %>
+    <%= render "games/game_card", game: game %>
+  <% end %>
+</div>
+
+<div class="company_critics">
+  <h3>Critics (<%= @company.critics_count%>)</h3>
+  <%= render "critics/form", criticable: @company ,critic: @critic %>
+  <% @company.critics.each do |critic| %>
+    <%= render "critics/critic", critic: critic %>
+  <% end %>
 </div>
 
 <div>

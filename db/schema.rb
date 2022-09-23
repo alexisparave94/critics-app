@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_22_040113) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_22_041724) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -24,6 +24,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_22_040113) do
     t.datetime "updated_at", null: false
     t.integer "games_count", default: 0
     t.index ["name"], name: "index_companies_on_name", unique: true
+  end
+
+  create_table "critics", force: :cascade do |t|
+    t.string "title"
+    t.text "body"
+    t.bigint "user_id", null: false
+    t.string "criticable_type", null: false
+    t.bigint "criticable_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["criticable_type", "criticable_id"], name: "index_critics_on_criticable"
+    t.index ["user_id"], name: "index_critics_on_user_id"
   end
 
   create_table "games", force: :cascade do |t|
@@ -87,6 +99,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_22_040113) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "critics", "users"
   add_foreign_key "games", "games", column: "parent_id"
   add_foreign_key "involved_companies", "companies"
   add_foreign_key "involved_companies", "games"

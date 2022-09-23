@@ -135,6 +135,9 @@
 
   <div class="critics_section">
     <h3>Critics (<%= game.critics_count %>)</h3>
+    <%= render "critics/form", critic: critic, criticable: game %>
+    <% game.critics.each do |critic| %>
+      <%= render "critics/critic", critic: critic %>
+    <% end %>
   </div>
-
 </div>

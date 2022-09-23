@@ -1,0 +1,19 @@
+<div class="form_critic">
+  <%= form_with model: [criticable, critic] do |f| %>
+    <% if critic.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(critic.errors.count, "error") %> prohibited this critic from being saved:</h2>
+
+        <ul>
+          <% critic.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <%= f.text_field :user_id %>
+    <%= f.text_field :title, placeholder: "Critic title", style: "display: block" %>
+    <%= f.text_area :body, placeholder: "Critic body ...", style: "display: block"%>
+    <%= f.submit "Create Critic"%>
+  <% end %>
+</div>
