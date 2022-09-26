@@ -1,6 +1,9 @@
 <p style="color: green"><%= notice %></p>
 
 <div class="company_header">
+  <% if @company.cover.attached? %>
+    <%= image_tag @company.cover, alt: "company_cover" %>
+  <% end %>
   <h1><%= @company.name %></h1>
   <p><span><%= "#{@company.start_date.year} - #{@company.country}" %></span></p>
 </div>
