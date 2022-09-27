@@ -15,9 +15,11 @@ class Game < ApplicationRecord
 
   has_many :critics, as: :criticable, dependent: :destroy
 
+  has_one_attached :cover
+
   # Validations
   validates :name, presence: true
-  validates :summary, length: { in: 10..100 }, allow_nil: true
+  validates :summary, length: { in: 10..1000 }, allow_nil: true
   validates :release_date, comparison: { less_than: Time.zone.now }, allow_nil: true
   validates :rating, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 100 },
                      allow_nil: true

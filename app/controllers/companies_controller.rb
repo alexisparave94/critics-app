@@ -34,7 +34,7 @@ class CompaniesController < ApplicationController
   # PATCH/PUT /companies/1
   def update
     if @company.update(company_params)
-      redirect_to @company, notice: "Company was successfully updated."
+      redirect_to companies_path, notice: "Company was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -54,6 +54,6 @@ class CompaniesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def company_params
-      params.require(:company).permit(:name, :description, :start_date, :country, :critics_count)
+      params.require(:company).permit(:name, :description, :start_date, :country, :critics_count, :cover)
     end
 end

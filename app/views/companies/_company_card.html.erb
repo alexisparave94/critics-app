@@ -1,5 +1,10 @@
 <div class=company_card>
   <div class="company_card-content">
+    <% if company.cover.attached? %>
+      <%= image_tag company.cover, alt: "company cover" %>
+    <% else %>
+     <p> No image </p>
+    <% end %>
     <h2><%= company.name%></h2>
     <p><span><%= "#{company.start_date.year} - #{company.country}"%></span></p>
     <p><%= company.description %></p>

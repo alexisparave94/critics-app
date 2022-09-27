@@ -32,6 +32,14 @@
   </div>
 
   <div>
+    <% if company.cover.attached? %>
+      <%= image_tag company.cover %>
+    <% end %>
+    <%= form.label :cover, style: "display: block" %>
+    <%= form.file_field :cover %>
+  </div>
+
+  <div>
     <%= form.submit %>
   </div>
 <% end %>
