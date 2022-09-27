@@ -46,6 +46,14 @@
   </div>
 
   <div>
+    <% if game.cover.attached? %>
+      <%= image_tag game.cover %>
+    <% end %>
+    <%= form.label :cover, style: "display: block" %>
+    <%= form.file_field :cover %>
+  </div>
+  
+  <div>
     <%= form.submit %>
   </div>
 <% end %>
